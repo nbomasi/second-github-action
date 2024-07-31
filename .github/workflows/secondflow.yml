@@ -16,12 +16,13 @@ jobs:
       - name: test-application
         run: npm test
   deploy:
+    needs: [test] # This part is important to get the first job named [test] to finish before the second job [deploy] starts, prvents parallel run 
     runs-on: ubuntu-latest
     steps:
       - name: get code
         uses: actions/checkout@v4
       - name: install nodejs
-        uses: actions/setu-node@va
+        uses: actions/setup-node@va
         with:
           node-version: 18
       - name: install dependencies
