@@ -1,16 +1,33 @@
-name: workflow2-nodejs
+name: deployment
 on: push
 
 jobs:
-  run-nodejs-app: 
+  test: 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: get code
+        uses: actions/checkout@v4
+      - name: install nodejs
+        uses: actions/setup-node@v4
         with:
           node-version: 18
       - name: install-dependencies
         run: npm ci
       - name: test-application
         run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v4
+      - name: install nodejs
+        uses: actions/setu-node@va
+        with:
+          node-version: 18
+      - name: install dependencies
+        run: npm ci
+      - name: Build project
+        run: npm run build
+      - name: Deploy
+        run: echo "Deploying ...."
 
