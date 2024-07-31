@@ -1,5 +1,6 @@
 name: deployment
 on: push
+#on: [push, workflow_dispatch, ....] using multiple workflow trigger
 
 jobs:
   test: 
